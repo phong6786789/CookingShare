@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/user"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+        android:title="User" />
+    <item
+        android:id="@+id/blank"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_star_24"
+        android:title="User" />
+</menu>
