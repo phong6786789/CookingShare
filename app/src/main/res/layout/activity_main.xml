@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:id="@+id/btMenu"
         app:itemIconTint="@drawable/seclectbtv"
-        android:background="@color/green"
+        android:background="@color/main_color"
         app:menu="@menu/menu_bottom"
         app:itemIconSize="25sp"
         android:layout_alignParentBottom="true"
