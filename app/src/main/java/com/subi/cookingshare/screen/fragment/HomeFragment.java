@@ -6,6 +6,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +22,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.subi.cookingshare.R;
+import com.subi.cookingshare.data.adapter.HomeAdapter;
+import com.subi.cookingshare.data.adapter.TypeAdapter;
+import com.subi.cookingshare.data.model.Food;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private View view = null;
@@ -32,13 +38,49 @@ public class HomeFragment extends Fragment {
     private LinearLayout ln1, ln2, ln3, ln4, ln5;
     private Dialog dialog;
     private Spinner spWays;
+    private RecyclerView rcv_type;
+    private TypeAdapter typeAdapter;
+    private ArrayList<String> list = new ArrayList<>();
+    private RecyclerView rcv_food;
 
+    private HomeAdapter homeAdapter;
+    private ArrayList<Food> listFood = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         init();
+
+        //add list
+        list.add("Thịt heo");
+        list.add("Thịt bò");
+        list.add("Gà");
+        list.add("Trứng");
+        list.add("Vịt");
+        list.add("Món chay");
+
+        //add list food
+        listFood.add(new Food("1", "Pizza trái cây", R.drawable.a, "Loại dinh dưỡng"));
+        listFood.add(new Food("1", "Bò beef steak", R.drawable.b, "Thịt loại 1"));
+        listFood.add(new Food("1", "Pizza trái cây", R.drawable.c, "Loại dinh dưỡng"));
+        listFood.add(new Food("1", "Pizza trái cây", R.drawable.d, "Loại dinh dưỡng"));
+        listFood.add(new Food("1", "Pizza trái cây", R.drawable.e, "Loại dinh dưỡng"));
+        listFood.add(new Food("1", "Pizza trái cây", R.drawable.h, "Loại dinh dưỡng"));
+        listFood.add(new Food("1", "Pizza trái cây", R.drawable.j, "Loại dinh dưỡng"));
+
+
+        //RCV type
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rcv_type.setLayoutManager(layoutManager);
+        typeAdapter = new TypeAdapter(getActivity(), list);
+        rcv_type.setAdapter(typeAdapter);
+
+        //RCV food
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getActivity());
+        rcv_food.setLayoutManager(layoutManager2);
+        homeAdapter = new HomeAdapter(getActivity(), listFood);
+        rcv_food.setAdapter(homeAdapter);
         setOnClickItem();
         return view;
     }
@@ -47,6 +89,8 @@ public class HomeFragment extends Fragment {
     private void init() {
         iv_add_food = view.findViewById(R.id.iv_add_food);
         spWays = view.findViewById(R.id.spWays);
+        rcv_type = view.findViewById(R.id.rcv_type);
+        rcv_food = view.findViewById(R.id.rcv_food);
 
     }
 
